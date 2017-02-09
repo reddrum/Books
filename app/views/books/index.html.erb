@@ -12,9 +12,11 @@
       <% @books.each do |book| %>
 
           <div class="col-md-3">
-            <a href="/books/<%= book.id %>">
-              <%= image_tag book.book_img.url(:book_index), class: "book" %>
-            </a>
+            <div class="image_wrapper">
+              <a href="/books/<%= book.id %>">
+                <%= image_tag book.book_img.url(:book_index), class: "book" %>
+              </a>
+            </div>
           </div>
 
       <% end %>
@@ -22,6 +24,3 @@
     </div>
 
 <% end %>
-
-
-<%= link_to "Add book", new_book_path %>
