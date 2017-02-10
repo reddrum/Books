@@ -10,52 +10,110 @@
 
   <body>
 
-    <nav class="navbar navbar-default">
+  <div id="wrapper">
+    <div class="overlay"></div>
+
+    <!-- Sidebar -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" id="sidebar-wrapper" role="navigation">
+      <ul class="nav sidebar-nav">
+        <li class="sidebar-brand">
+          <%= link_to "Book Review", root_path, class: "navbar-brand" %>
+        </li>
+        <li>
+          <%= link_to "Sign Up", new_user_registration_path %>
+        </li>
+        <% if user_signed_in? %>
+          <li>
+            <%= link_to "Sign Out", destroy_user_session_path, method: :delete %>
+          </li>
+        <% else %>
+          <li>
+            <%= link_to "Log In", new_user_session_path %>
+          </li>
+        <% end %>
+        <li>
+          <a href="#">Events</a>
+        </li>
+        <% if user_signed_in? %>
+          <li>
+            <%= link_to "Add Book", new_book_path %>
+          </li>
+        <% end %>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Categories <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li class="dropdown-header">Dropdown heading</li>
+            <% Category.all.each do |category| %>
+                <li class="<%= 'active' if params[:category] == category.name %>">
+                  <%= link_to category.name, books_path(category: category.name), class: "link" %>
+                </li>
+            <% end %>
+          </ul>
+        </li>
+        <li>
+          <a href="#">Services</a>
+        </li>
+        <li>
+          <a href="#">Contact</a>
+        </li>
+        <li>
+          <a href="#">Follow me</a>
+        </li>
+      </ul>
+    </nav>
+    <!-- /#sidebar-wrapper -->
+
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
+      <button type="button" class="hamburger is-closed" data-toggle="offcanvas">
+        <span class="hamb-top"></span>
+        <span class="hamb-middle"></span>
+        <span class="hamb-bottom"></span>
+      </button>
+
+      <p class="notice"><%= notice %></p>
+      <p class="alert"><%= alert %></p>
 
       <div class="container">
-
-        <div class="navbar-header">
-          <%= link_to "Book Review", root_path, class: "navbar-brand" %>
-        </div>
-
-        <ul class="nav navbar-nav">
-          <li><%= link_to "Sign Up", new_user_registration_path %></li>
-          <% if user_signed_in? %>
-              <li><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></li>
-          <% else %>
-              <li><%= link_to "Log In", new_user_session_path %></li>
-          <% end %>
-        </ul>
-
-        <ul class="nav navbar-nav navbar-right">
-
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Categories <span class="caret"></span></a>
-            <ul class="dropdown-menu" role="menu">
-              <% Category.all.each do |category| %>
-                  <li class="<%= 'active' if params[:category] == category.name %>">
-                    <%= link_to category.name, books_path(category: category.name), class: "link" %>
-                  </li>
-              <% end %>
-            </ul>
-          </li>
-
-
-          <% if user_signed_in? %>
-              <li><%= link_to "Add Book", new_book_path %></li>
-          <% end %>
-        </ul>
-
+        <%= yield %>
       </div>
-
-    </nav>
-
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-
-    <div class="container">
-      <%= yield %>
     </div>
+    <!-- /#page-content-wrapper -->
+
+  </div>
+  <!-- /#wrapper -->
+
+  <script>
+    $(document).ready(function () {
+      var trigger = $('.hamburger'),
+          overlay = $('.overlay'),
+          isClosed = false;
+
+      trigger.click(function () {
+        hamburger_cross();
+      });
+
+      function hamburger_cross() {
+
+        if (isClosed == true) {
+          overlay.hide();
+          trigger.removeClass('is-open');
+          trigger.addClass('is-closed');
+          isClosed = false;
+        } else {
+          overlay.show();
+          trigger.removeClass('is-closed');
+          trigger.addClass('is-open');
+          isClosed = true;
+        }
+      }
+
+
+      $('[data-toggle="offcanvas"]').click(function () {
+        $('#wrapper').toggleClass('toggled');
+      });
+    });
+  </script>
 
   </body>
 </html>
