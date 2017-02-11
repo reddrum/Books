@@ -30,7 +30,11 @@
 /* General styles */
 
 body {
-  background-color: rgba(255, 255, 255, 0.68);
+  background-image: url(bckg2.jpg);
+  -moz-background-size: 100%;
+  -webkit-background-size: 100%;
+  -o-background-size: 100%;
+  background-size: 125%;
   font-family: 'Ubuntu', sans-serif;
   position: relative;
   overflow-x: hidden;
@@ -48,6 +52,7 @@ h1, h2, h3, h4, h5, h6 {
 
 p.alert, p.notice {
   margin: 0;
+  color: whitesmoke;
 }
 
 
@@ -80,24 +85,7 @@ p.alert, p.notice {
     }
 
   }
-
-  .dropdown-menu > li > a:hover {
-    background-color: darken(#222222, 5%);
-    color: #fff;
-  }
-
-  .navbar-nav > .open > a, .navbar-nav > .open > a:hover, .navbar-nav > .open > a:focus {
-    background-color: darken(#222222, 5%);
-    color: #fff;
-  }
-
 }
-
-.dropdown-menu > .active > a {
-  background-color: #222222;
-  color: #fff;
-}
-
 
 /* Button/link styles */
 
@@ -207,6 +195,7 @@ p.alert, p.notice {
 
 .current-category {
   margin-bottom: 40px;
+  color: whitesmoke;
 }
 
 
@@ -410,6 +399,9 @@ p.alert, p.notice {
 .sidebar-nav li:first-child a {
   color: #fff;
   background-color: #1a1a1a;
+  letter-spacing: 1.4px;
+  font-family: 'Architects Daughter', cursive;
+  font-size: 115%
 }
 .sidebar-nav li:nth-child(2):before {
   background-color: #ec1b5a;
@@ -532,7 +524,7 @@ p.alert, p.notice {
 .hamburger.is-closed .hamb-top,
 .hamburger.is-closed .hamb-middle,
 .hamburger.is-closed .hamb-bottom {
-  background-color: #1a1a1a;
+  background-color: #f4faf1;
 }
 .hamburger.is-closed .hamb-top {
   top: 5px;
