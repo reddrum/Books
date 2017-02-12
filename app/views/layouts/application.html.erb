@@ -31,9 +31,7 @@
             <%= link_to "Log In", new_user_session_path %>
           </li>
         <% end %>
-        <li>
-
-        </li>
+        <li class="nav-divider"></li>
         <% if user_signed_in? %>
           <li>
             <%= link_to "Add Book", new_book_path %>
