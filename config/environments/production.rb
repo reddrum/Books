@@ -83,4 +83,8 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  config.action_mailer.default_url_options = { :host => 'shielded-sierra-87805.herokuapp.com' }
+
+  config.assets.precompile += ['static_pages.css']
 end
