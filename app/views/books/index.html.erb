@@ -7,7 +7,7 @@
 <% else %>
 
     <div class="row">
-      <div class="col-md-6 col-md-offset-3">
+      <div class="col-sm-8 col-sm-offset-2">
         <div class="searchform">
           <%= form_tag search_books_path, method: :get, role: "search" do %>
               <p>
@@ -19,11 +19,11 @@
       </div>
     </div>
 
-    <div class="row">
+    <div class="row centered">
 
       <% @books.each do |book| %>
 
-          <div class="col-md-3">
+          <div class="col-sm-4 col-md-4">
               <a href="/books/<%= book.id %>">
                 <%= image_tag book.book_img.url(:book_index), class: "book" %>
               </a>

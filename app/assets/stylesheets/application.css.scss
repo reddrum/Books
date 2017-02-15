@@ -30,11 +30,11 @@
 /* General styles */
 
 body {
-  background: image-url('bckg2.jpg');
+  background: image-url('bckg2.jpg') no-repeat center center fixed;
+  background-size: 100% 100%;
   -moz-background-size: 100%;
   -webkit-background-size: 100%;
   -o-background-size: 100%;
-  background-size: 125%;
   font-family: 'Ubuntu', sans-serif;
   position: relative;
   overflow-x: hidden;
@@ -87,9 +87,21 @@ p.alert, p.notice {
   }
 }
 
+.centered {
+  text-align: center;
+  font-size: 0;
+}
+.centered > div {
+  float: none;
+  display: inline-block;
+  text-align: left;
+  font-size: 13px;
+}
+
 .searchform {
-  margin-top: -70px;
-  width: 98%;
+  margin-top: -50px;
+  //margin: -50px 50px 50px 20px;
+  //width: 80%;
 }
 
 .form-control{
