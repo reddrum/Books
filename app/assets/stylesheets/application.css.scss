@@ -87,20 +87,15 @@ p.alert, p.notice {
   }
 }
 
-.centered {
-  text-align: center;
-  font-size: 0;
-}
-.centered > div {
-  float: none;
-  display: inline-block;
-  text-align: left;
-  font-size: 13px;
+.flexbox {
+  display:flex;
+  justify-content:center;
+  align-items: center;
+  flex-flow: column;
 }
 
 .searchform {
   margin-top: -50px;
-  //margin: -50px 50px 50px 20px;
   //width: 80%;
 }
 
