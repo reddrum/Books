@@ -32,6 +32,14 @@ gem 'paperclip', '~> 5.1'
 
 gem 'searchkick', '~> 2.1', '>= 2.1.1'
 
+gem 'capistrano', '~> 3.7', '>= 3.7.2'
+
+gem 'capistrano-rails', '~> 1.2', '>= 1.2.2'
+
+gem 'capistrano-passenger', '~> 0.2.0'
+
+gem 'capistrano-rbenv', '~> 2.1'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
