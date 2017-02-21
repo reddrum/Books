@@ -325,6 +325,7 @@ p.alert, p.notice {
 
 .new-review-form, .edit-review-form {
   @include background-tile;
+  padding: 1.5em 1.25em;
 
   h1 {
     margin-top: 0;
