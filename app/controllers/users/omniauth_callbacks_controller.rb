@@ -5,7 +5,9 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     sign_in_and_redirect @user
   end
 
-  def vkontakte
-  end
+  # def vkontakte
+  #   binding.pry
+  # end
 
 end
+
