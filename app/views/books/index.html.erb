@@ -20,6 +20,7 @@
     </div>
 
     <div class="container-fluid cont">
+      <%= will_paginate(@books, :renderer => WillPaginate::ActionView::LinkRenderer) %>
       <div class="row">
 
         <% @books.each do |book| %>
@@ -31,8 +32,8 @@
             </div>
 
         <% end %>
-
       </div>
+      <%= will_paginate(@books, :renderer => WillPaginate::ActionView::LinkRenderer) %>
     </div>
 
 <% end %>
