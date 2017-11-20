@@ -50,6 +50,8 @@ gem 'will_paginate', '~> 3.1', '>= 3.1.6'
 
 gem 'bootstrap-will_paginate', '~> 1.0'
 
+gem 'rb-readline', '~> 0.5.5'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri

@@ -1,6 +1,7 @@
 class BooksController < ApplicationController
   before_action :find_book, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, only: [:new, :edit]
+  before_action ->{ @categories = Category.all.map { |c| [c.name, c.id] } }, only: %i[new create]
 
   def search
     if params[:search].present?
@@ -29,7 +30,6 @@ class BooksController < ApplicationController
 
   def new
     @book = current_user.books.build
-    @categories = Category.all.map{ |c| [c.name, c.id] }
   end
 
   def create
