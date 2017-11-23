@@ -37,7 +37,7 @@ class BooksController < ApplicationController
     @book.category_id = params[:category_id]
 
     if @book.save
-      redirect_to root_path
+      redirect_to book_path(@book)
     else
       render 'new'
     end
