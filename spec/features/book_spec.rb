@@ -18,5 +18,19 @@ describe "Books", :type => :feature do
       click_button 'Create Book'
       expect(page).to have_xpath("//img[contains(@src,'image.jpg')]")
     end
+
+    it "create book&review" do
+      visit new_book_path
+      select("cat1", from: "category_id").select_option
+      fill_in('book_title', with: 'booooook2')
+      fill_in('book_description', with: 'lorem ipsum')
+      fill_in('book_author', with: 'someone')
+      click_button 'Create Book'
+
+      visit new_book_review_path("#{Book.last.id}")
+      fill_in('review[comment]', with: 'nice book')
+      click_button 'Create Review'
+      expect(page).to have_content 'nice book'
+    end
   end
 end
