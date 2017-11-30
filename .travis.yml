@@ -1,16 +1,19 @@
 language: ruby
 rvm:
-- 2.4.1
+  - 2.4.1
 services:
-- postgresql
-- elasticsearch
+  - postgresql
+  - elasticsearch
 script:
-- RAILS_ENV=test bundle exec rake db:migrate
-- bundle exec rake db:test:prepare
-- bundle exec rspec
+  - RAILS_ENV=test bundle exec rake db:migrate
+  - bundle exec rake db:test:prepare
+  - bundle exec rspec
 before_script:
-- cp config/database.yml.travis config/database.yml
-- psql -c 'create database travis_ci_test;' -U postgres
+  - cp config/database.yml.travis config/database.yml
+  - psql -c 'create database travis_ci_test;' -U postgres
+  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+  - chmod +x ./cc-test-reporter
+  - ./cc-test-reporter before-build
 addons:
   apt:
     sources:
@@ -19,7 +22,9 @@ addons:
       - elasticsearch  
   code_climate:
     repo_token:
-    secure: "W6aTnG3C6rkgC7asIRaWIRFV6UFEAEfTZuUwzZwJR1vTSHOM8WBCGt3W7m0+2vm0cG7ZD6kbJGTd6q8ik908vd1yyI9awZsish8x4XDKwG4YsYXEKBEyGi0DbgzqQKFv0cZkcBHg/0HHFuAU4AReiCA3v5KJAPsLG5pt89nD19Rtx18C2O92BL+mjLlgF+TbNQRp5ZHzELsAE59IaeQyTax2mMISZtCYU/F0PE5iLH5GeBs2/9REimaWRS8ePTOi2WogXbUDa2SmUvo+SE2jd0vdsxp2nbKexW6n/Ou7N89vJwtP8TAN38QsjIPogJMmrCVkQgn5L/AqymyygavHeLTPumnGH+J2cWtJO+qL6nPchnfbB+W8ml4cGouFQbo5fju/GbYG2ckBGrpC3oMAAaPesPiUrbu+HsgS2swljpBC1F0+HTGuGVHEmD0PH2xmn61KA3JK2g9PeyvFt9yTA/3Vz/RrD5k7OpJ+kEPJVm/0SlanGb9BGBm7LhTZcX0HjAuhPDstrAb22XVvOzSpO5PKXcZfKBTrN+YTioS4/npytdUWGhJBHQr/oF66WA3suimlx+8wY6uag3wUMtTokwHN0ODKYCDTsnHi6KIlRisbIiJMrDfDDH8Y59A/1ZftRkH3TO81IVrKfhp10xuXdcbvf3boUJWUYhgTXrn0qoc="
+    secure: "brPHXf2ZKwDYdGTNKeKAsmo6q0nphQ7DUwbhDESbK4T1iNanjOLFR326g3LvwGOPPDw2193UemxFX7067JxhPlBBv6zzB0CcWVYBclXILmesX1Me/WugNf+B7+xe67wLErM00FSHd5hU36fJP/vuBryfSL373CYbrfWuC6hjseGF53TdgTah66GPWAO5++gGuM9cIWUNQzsCwtFKhO5Y+Hfki0EDdiZx0nY9yXT6L1aEUJh9gtzS0hVj8dKptNDYtgfIVEZsS2aePswTqWqTZHMc3mBAKD02AwONJL28izevtTiMDOQmNRWyJvGHBYAzqncnsTndYLRQp5+J/SYLgpoXrViTjAGTUJ8rZc7BStJ+hd5Xc6f4eNg7JqLSEiDOv/a9ElRUs+y6aDwyr9cWqMjZnI5LYHhFG74xvD8XPVwYjQ+llaxPOf7bvR2SQkx9Oe7K536Tyn31tLHFnr1rp0yiptXMWqDMA8+DUrXqFAAz9FnSiBXEoPAYyASIwcvW9fkSqdC0MWS9tsdgo7v5nj04E13RByV4buIicf+s+nKyC+DLeVN8bulily7/S3jsWDcUWktqsqrb1LfIA4YWz827GKel1qiB7IG0BNTP+mRRPghkA2esVJg7L4EVJ8Z/SNgwjQx5lBvlqFd0kMqx+vEabgh7hxH00H1loOdtPVE="
 env:
   global:
-  - secure: "fryIVre7U0QCn3Y+VnWFzI07Wiokj1DvDZ6pzDJc+awqwrPpwbwHiu1lXqZM7xR+5YiPfFuExI4ArLM+2I42HqNliiyaU3HYk+DgbxUOS1VUpyBP9Q4rhHgoe3CsN2B4yGD72RNzNTjbdPsZq4uyAoowm5D/XghgHaTOk8IcYnTKvtTrI7ILeFjqltjDe68wQVAbxBpHJWTW+YHXjoYnAB+UxTZD18DuXG7QO4bu6Te/l7P02T1aV02zUkgiN4hrHyLRtIHVeAEPph0sb8vqtGiVSDzD7mGzRRk+/MRe1c0Rcn0OhEBtwPoTQjxrFRWxj16PAhyyHdMq/dq9PKg9Yvv50d7eho6oYx9yQSbz+Oh2sIJpNBr6PrajWhAA1k+BYiLfsAcVp05oHtsrKVsnnciVF0eRiH+gOxAr/jimZA5nwEnzjJcWuEJRoLLhaM6IpG0VYKVbONBuBPkqTjiuq3RxHwNhhfsy6Z6nyqx9unBMDntD9gQlXEkIP2bMZ3C8iTqzuOnCVXv9PGmUrOeLQvXKZd6Aq4zfMTpEDQxItabdpz3VqilofnQs4T73PmvAUGHVlGGXxWsSpQJnBI1YSC3Y5589KHLV3GQ9bIKEGfJIsMKiS+loTbETj0fsyPCsuKCfBfFT9gXEgvvyBwYfr8dCq/tPIXH+cRK2eti1T54="
+    - secure: "fryIVre7U0QCn3Y+VnWFzI07Wiokj1DvDZ6pzDJc+awqwrPpwbwHiu1lXqZM7xR+5YiPfFuExI4ArLM+2I42HqNliiyaU3HYk+DgbxUOS1VUpyBP9Q4rhHgoe3CsN2B4yGD72RNzNTjbdPsZq4uyAoowm5D/XghgHaTOk8IcYnTKvtTrI7ILeFjqltjDe68wQVAbxBpHJWTW+YHXjoYnAB+UxTZD18DuXG7QO4bu6Te/l7P02T1aV02zUkgiN4hrHyLRtIHVeAEPph0sb8vqtGiVSDzD7mGzRRk+/MRe1c0Rcn0OhEBtwPoTQjxrFRWxj16PAhyyHdMq/dq9PKg9Yvv50d7eho6oYx9yQSbz+Oh2sIJpNBr6PrajWhAA1k+BYiLfsAcVp05oHtsrKVsnnciVF0eRiH+gOxAr/jimZA5nwEnzjJcWuEJRoLLhaM6IpG0VYKVbONBuBPkqTjiuq3RxHwNhhfsy6Z6nyqx9unBMDntD9gQlXEkIP2bMZ3C8iTqzuOnCVXv9PGmUrOeLQvXKZd6Aq4zfMTpEDQxItabdpz3VqilofnQs4T73PmvAUGHVlGGXxWsSpQJnBI1YSC3Y5589KHLV3GQ9bIKEGfJIsMKiS+loTbETj0fsyPCsuKCfBfFT9gXEgvvyBwYfr8dCq/tPIXH+cRK2eti1T54="
+after_script:
+  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT  
