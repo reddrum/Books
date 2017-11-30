@@ -1,7 +1,7 @@
 class BooksController < ApplicationController
   before_action :find_book, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, only: [:new, :edit]
-  before_action ->{ @categories = Category.all.map { |c| [c.name, c.id] } }, only: %i[new create]
+  before_action ->{ @categories = Category.pluck(:name, :id) }, only: %i[new create]
 
   def search
     if params[:search].present?
