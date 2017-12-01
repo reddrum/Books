@@ -835,6 +835,7 @@ DEPENDENCIES
   searchkick (~> 2.1, >= 2.1.1)
   selenium-webdriver
   simple_form (~> 3.4)
+  simplecov
   spring
   spring-watcher-listen (~> 2.0.0)
   sqlite3
