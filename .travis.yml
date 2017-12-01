@@ -1,4 +1,7 @@
 language: ruby
+bundler_args: --deployment --without development
+cache: bundler
+sudo: required
 rvm:
   - 2.4.1
 services:
@@ -8,6 +11,11 @@ script:
   - RAILS_ENV=test bundle exec rake db:migrate
   - bundle exec rake db:test:prepare
   - bundle exec rspec
+before_install:
+  - gem update --system
+  - wget https://github.com/nats-io/gnatsd/releases/download/v0.9.4/gnatsd-v0.9.4-linux-amd64.zip -O /tmp/gnatsd.zip
+  - unzip /tmp/gnatsd.zip
+  - export PATH=$PATH:$PWD/gnatsd-v0.9.4-linux-amd64  
 before_script:
   - cp config/database.yml.travis config/database.yml
   - psql -c 'create database travis_ci_test;' -U postgres
@@ -23,5 +31,6 @@ addons:
 env:
   global:
     - secure: "fryIVre7U0QCn3Y+VnWFzI07Wiokj1DvDZ6pzDJc+awqwrPpwbwHiu1lXqZM7xR+5YiPfFuExI4ArLM+2I42HqNliiyaU3HYk+DgbxUOS1VUpyBP9Q4rhHgoe3CsN2B4yGD72RNzNTjbdPsZq4uyAoowm5D/XghgHaTOk8IcYnTKvtTrI7ILeFjqltjDe68wQVAbxBpHJWTW+YHXjoYnAB+UxTZD18DuXG7QO4bu6Te/l7P02T1aV02zUkgiN4hrHyLRtIHVeAEPph0sb8vqtGiVSDzD7mGzRRk+/MRe1c0Rcn0OhEBtwPoTQjxrFRWxj16PAhyyHdMq/dq9PKg9Yvv50d7eho6oYx9yQSbz+Oh2sIJpNBr6PrajWhAA1k+BYiLfsAcVp05oHtsrKVsnnciVF0eRiH+gOxAr/jimZA5nwEnzjJcWuEJRoLLhaM6IpG0VYKVbONBuBPkqTjiuq3RxHwNhhfsy6Z6nyqx9unBMDntD9gQlXEkIP2bMZ3C8iTqzuOnCVXv9PGmUrOeLQvXKZd6Aq4zfMTpEDQxItabdpz3VqilofnQs4T73PmvAUGHVlGGXxWsSpQJnBI1YSC3Y5589KHLV3GQ9bIKEGfJIsMKiS+loTbETj0fsyPCsuKCfBfFT9gXEgvvyBwYfr8dCq/tPIXH+cRK2eti1T54="
+    - CF_RUN_PERM_SPECS=false
 after_script:
-  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT  
+  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
