@@ -11,6 +11,9 @@ class BooksController < ApplicationController
     end
   end
 
+  def contact
+  end
+  
   def index
     if params[:category].blank?
       @books = Book.all.order("created_at DESC").paginate(:page => params[:page])
@@ -23,9 +26,9 @@ class BooksController < ApplicationController
   def show
     @reviews =  @book.reviews.order("created_at DESC")
     unless @reviews.present?
-     @avg_review = 0
+      @avg_review = 0
     else
-     @avg_review = @reviews.average(:rating).present? ? @reviews.average(:rating).round(2) : 0
+      @avg_review = @reviews.average(:rating).present? ? @reviews.average(:rating).round(2) : 0
     end
   end
 

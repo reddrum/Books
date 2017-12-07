@@ -11,6 +11,8 @@ Rails.application.routes.draw do
     resources :reviews
   end
 
+  get '/contact', to: "books#contact"
+
   root 'books#index'
 
 end
