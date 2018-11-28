@@ -28,7 +28,7 @@ gem 'simple_form', '~> 3.4'
 
 gem 'bootstrap-sass', '~> 3.3', '>= 3.3.7'
 
-gem 'devise', '~> 4.2'
+gem 'devise', '~> 4.5'
 
 gem 'paperclip', '~> 5.1'
 
@@ -59,6 +59,8 @@ gem 'will_paginate-bootstrap'
 gem 'codeclimate-test-reporter', '~> 1.0', '>= 1.0.8'
 
 gem 'simplecov', :require => false, :group => :test
+
+gem 'rails_12factor', '~> 0.0.3'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
