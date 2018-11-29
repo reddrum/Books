@@ -61,7 +61,7 @@ gem 'codeclimate-test-reporter', '~> 1.0', '>= 1.0.8'
 
 gem 'simplecov', :require => false, :group => :test
 
-gem 'rails_12factor', '~> 0.0.3'
+gem 'rails_12factor', group: :production
 
 gem 'sprockets', '~>3.7.2'
 
