@@ -3,7 +3,7 @@ bundler_args: --deployment --without development
 cache: bundler
 sudo: required
 rvm:
-  - 2.4.1
+  - 2.5.3
 services:
   - postgresql
   - elasticsearch
